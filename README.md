@@ -53,7 +53,7 @@ special function is a **React Hook** that will let us "hook into" React's
 internal state inside of our function component.
 
 ```jsx
-import React, { useState } from "react";
+import { useState } from "react";
 ```
 
 ### Initializing State
@@ -106,6 +106,20 @@ We can then use the `count` variable to display its current value in the
 // => <button>0</button>
 ```
 
+## Typing State 
+
+When initially setting state, TypeScript can infer the type to use based on
+the initial value. However, if it's desired to be more explicit about the type, 
+we can do so as well using the generic syntax `<>`. For example with our `count`
+state, we could write: 
+
+`const [count, setCount] = useState<number>(0);` 
+
+It may be tempting to type within the descrutctured syntax, but just as we are 
+unable to type within destructured objects, we cannot do so within destructured 
+arrays as well. Using the generic syntax instead will handle typing both the 
+state variable and setter function. 
+
 ## Setting State
 
 The setter function we get back from calling `useState` is straightforward in
@@ -115,7 +129,7 @@ case, `setCount`):
 
 ```jsx
 function Counter() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number>(0);
 
   function increment() {
     setCount(count + 1);
@@ -168,7 +182,7 @@ component (pay close attention to the `console.log()`s:
 
 ```jsx
 function Counter() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number>(0);
 
   function increment() {
     console.log(`before setState: ${count}`);
@@ -203,7 +217,7 @@ counter). To demonstrate the issue, consider the following:
 
 ```jsx
 function Counter() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number>(0);
 
   function increment() {
     // call setCount twice, to update the counter by two every time we click
@@ -282,7 +296,7 @@ is called every time your component is rendered. That means this syntax isn't
 valid:
 
 ```jsx
-function Counter(props) {
+function Counter(props: { shouldHaveCount: boolean }) {
   if (props.shouldHaveCount) {
     // This is wrong -- never call a hook inside a condition
     const [count, setCount] = useState(0);
@@ -300,7 +314,7 @@ docs][rules of hooks explanation].
 
 #### Only Call Hooks from React Functions
 
-> Don’t call Hooks from regular JavaScript functions.
+> Don’t call Hooks from regular TypeScript functions.
 
 React Hooks are meant to work specifically with React components, so make sure
 to only use Hooks inside of React components. We'll see how to create custom
