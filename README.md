@@ -314,7 +314,7 @@ docs][rules of hooks explanation].
 
 #### Only Call Hooks from React Functions
 
-> Don’t call Hooks from regular JavaScript functions.
+> Don’t call Hooks from regular TypeScript functions.
 
 React Hooks are meant to work specifically with React components, so make sure
 to only use Hooks inside of React components. We'll see how to create custom
