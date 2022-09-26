@@ -53,7 +53,7 @@ special function is a **React Hook** that will let us "hook into" React's
 internal state inside of our function component.
 
 ```jsx
-import { useState } from "react";
+import React, { useState } from "react";
 ```
 
 ### Initializing State
@@ -140,7 +140,7 @@ case, `setCount`):
 
 ```jsx
 function Counter() {
-  const [count, setCount] = useState < number > 0;
+  const [count, setCount] = useState <number> 0;
 
   function increment() {
     setCount(count + 1);
@@ -193,7 +193,7 @@ component (pay close attention to the `console.log()`s):
 
 ```jsx
 function Counter() {
-  const [count, setCount] = useState < number > 0;
+  const [count, setCount] = useState <number> 0;
 
   function increment() {
     console.log(`before setState: ${count}`);
@@ -228,7 +228,7 @@ counter). To demonstrate the issue, consider the following:
 
 ```jsx
 function Counter() {
-  const [count, setCount] = useState < number > 0;
+  const [count, setCount] = useState <number> 0;
 
   function increment() {
     // call setCount twice, to update the counter by two every time we click
@@ -307,7 +307,7 @@ is called every time your component is rendered. That means this syntax isn't
 valid:
 
 ```jsx
-function Counter(props: { shouldHaveCount: boolean }) {
+function Counter(props) {
   if (props.shouldHaveCount) {
     // This is wrong -- never call a hook inside a condition
     const [count, setCount] = useState(0);
