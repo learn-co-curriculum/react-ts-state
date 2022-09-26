@@ -140,7 +140,7 @@ case, `setCount`):
 
 ```jsx
 function Counter() {
-  const [count, setCount] = useState < number > 0;
+  const [count, setCount] = useState<number>(0);
 
   function increment() {
     setCount(count + 1);
@@ -193,7 +193,7 @@ component (pay close attention to the `console.log()`s:
 
 ```jsx
 function Counter() {
-  const [count, setCount] = useState < number > 0;
+  const [count, setCount] = useState<number>(0);
 
   function increment() {
     console.log(`before setState: ${count}`);
@@ -228,7 +228,7 @@ counter). To demonstrate the issue, consider the following:
 
 ```jsx
 function Counter() {
-  const [count, setCount] = useState < number > 0;
+  const [count, setCount] = useState<number>(0);
 
   function increment() {
     // call setCount twice, to update the counter by two every time we click
@@ -310,7 +310,7 @@ valid:
 function Counter(props: { shouldHaveCount: boolean }) {
   if (props.shouldHaveCount) {
     // This is wrong -- never call a hook inside a condition
-    const [count, setCount] = useState < number > 0;
+    const [count, setCount] = useState<number>(0);
 
     // return ...
   }
